@@ -1,0 +1,76 @@
+.about {
+    padding-bottom: 2rem;
+
+    &__bio-image {
+        height: 50vh;
+        width: 100%;
+
+        background:
+            // L'immagine è troppo bianca, si potrebbe risolvere il problema in vari modi
+            // scegliamo di definire un gradiente lineare
+            // Il gradiente andrà verso destra; 
+            // Il colore di partenza il colore primario, con opacità 0.9 
+            // Il colore di destinazione è ancora il colore primario: potremmo mantenere opacità 0.9,
+            // tuttavia variamo l'opacità per portarla fino a 0.3
+            linear-gradient(to right,
+                rgba($primary-color, 0.9),
+                rgba($primary-color, 0.3)),
+            // Senza le indicazioni di posizionamento, 
+            // l'immagine non è correttamente posizionata
+            url('../img/model-1.jpg') center top;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+
+        p {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__bio {
+        width: 80%;
+        text-align: center;
+
+        .text-secondary {
+            padding-bottom: 1rem;
+        }
+    }
+
+    // Le icone social sono un po' troppo in mezzo ai piedi: le 
+    // mostriamo in colonna
+    .social-icons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        transform: 
+            rotate(90deg)
+            translate(-3rem, -5rem);
+    }
+}
+
+.jobs {
+    width: 60vw;
+    margin: 2rem auto 0 auto;
+    display: grid;
+    // Una unità frazionaria per la colonna della griglia, almeno inizialmente
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    &__job {
+        background: lighten($primary-color, 10%);
+        padding: 0.5rem;
+        border-bottom: 5px solid $secondary-color; 
+
+        h2, h3 {
+            margin: 0.5rem 0;
+        }
+        
+        h6 {
+            margin: 0.3rem 0;
+        }
+    }
+}
