@@ -45,9 +45,115 @@
         // Via JS assegneremo all'hamburger la classe "open"
         // e dopo 2 giri di ruota (dell'intero hamburger), 
         // la sola riga centrale diventerà trasparente.
+        // e le altre 2 formeranno una "X"
         &.open {
             transform: rotate(720deg);
             background: transparent;
+
+            // Prima barra quando il menu è aperto:
+            // ruotiamo di 45° e la spostiamo un po' a destra e un po' più in basso
+            &::before {
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+
+            // Terza barra quando il menu è aperto
+            &::after {
+                // Va riallungata (l'avevamo accorciata)
+                // e girata di 45° in senso antiorario.
+                width: 28px;
+                transform: rotate(-45deg) translate(3px, -7px);
+            }
         };
+    }
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 0.98;
+
+    // Inizialmente la visibilità è nascosta.
+    // Via JS aggiungeremo una classe al blocco ".nav"
+    // quando il menu deve apparire.
+    visibility: hidden;
+
+    // Quando la navigazione è aperta, sarà anche visibile.
+    &.open {
+        visibility: visible;
+    }
+
+    .menu-nav {
+        display: flex;
+        
+        // Mettiamo wrap per supportare dispositivi con una altezza strana
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+         
+        // nascondiamo le eventuali barre di scorrimento
+        overflow: hidden;
+        background: $primary-color;
+
+        // elenco puntato tradizionale
+        list-style-type: none;
+        padding-right: 1rem;
+
+        // Facciamo questa traslazione per fare in modo che la posizione
+        // iniziale del menu sia in cima, ma fuori dalla pagina.
+        // Quando cliccheremo sull'hamburger, vorremo che il menu
+        // "scenda" dall'alto dei cieli :)
+        transform: translateY(-100%);
+        @include transition-ease;
+
+        &.open {
+            // Quando il menu è aperto, lo riportiamo alla posizione iniziale
+            transform: translateY(0);
+        }
+
+        // Il menu cala dall'alto; vogliamo invece che gli elementi di menu
+        // provengano dalla destra
+        &__item {
+            transform: translateX(100vw);
+            @include transition-ease;
+
+            &.open {
+                transform: translateX(0);
+            }
+
+            // Aggiungeremo via JS anche la classe "active"
+            // che useremo per influenzare l'ancora sottostante
+            &.active > a {
+                color: $secondary-color;
+            }
+        }
+
+        &__link {
+            display: inline-block;
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding: 2rem 0;
+            font-weight: 300;
+            @include transition-ease;
+
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+// Aggiungiamo un ciclo for per rallentare l'elaborazione
+// quando avviene l'apertura del menu. Abbiamo 4 link,
+// quindi andremo da 1 a 4
+@for $i from 1 through 4 {
+    // Non possiamo mettere direttamente $i come parametro della pseudo-classe
+    // nth-child (la compilazione Sass fallirebbe: dobbiamo metterlo tra
+    // parentesi gragge e mettere un cancelletto come prefisso
+    .menu-nav__item:nth-child(#{$i}) {
+        // qui possiamo usare la variabile senza parentesi graffe
+        transition-delay: ($i * 0.1s) + 0.15s;
     }
 }
