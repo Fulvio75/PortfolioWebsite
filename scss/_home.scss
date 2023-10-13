@@ -1,0 +1,41 @@
+.home {
+    height: 100%;
+    padding-top: 40vh;
+    
+    // Non vogliamo barre di scorrimento
+    overflow: hidden;
+    align-items: center;
+    text-align: center;
+    
+    
+    background: 
+        // L'immagine è troppo bianca, si potrebbe risolvere il problema in vari modi
+        // scegliamo di definire un gradiente lineare
+        // Il gradiente andrà verso destra; 
+        // Il colore di partenza il colore primario, con opacità 0.9 
+        // Il colore di destinazione è ancora il colore primario: potremmo mantenere opacità 0.9,
+        // tuttavia variamo l'opacità per portarla fino a 0.3
+        linear-gradient(
+            to right,
+            rgba($primary-color, 0.9),
+            rgba($primary-color, 0.3)
+        ),
+        // Senza le indicazioni di posizionamento, 
+        // l'immagine non è correttamente posizionata
+        url('../img/model-1.jpg') center top;
+    background-size: cover;
+
+    // diventerà .home__name: la e commerciale si riferisce al nome della regola contenitore
+    &__name {
+        font-size: 5rem;
+        padding-bottom: 1rem;
+        margin-top: 1rem;
+        border-bottom: 2px solid set-text-color($primary-color);
+
+        // diventerà .home__name--last
+        &--last {
+            color: $secondary-color;
+            font-weight: 700;
+        }
+    };
+}

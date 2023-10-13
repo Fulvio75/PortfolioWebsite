@@ -1,0 +1,31 @@
+$primary-color: #272727;
+$secondary-color: #ff652f;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Vogliamo rendere il cambio del colore che si manifesta quando il puntatore si sofferma
+// sulle icone social (bianco-->arancione) meno repentino, introducendo una transizione
+// Solitamente nelle transizioni miriamo a una proprietà specifica (colore, posizione, ...)
+// Qui vogliamo riutilizzare il mescolino in varie circostanze, e vogliamo che dopo
+// mezzo secondo si abbia la transizione "ease-in-out"
+@mixin transition-ease {
+    transition: all 0.5s ease-in-out;
+}
+
+// Se cambiassimo il colore primario in "bianco", non riusciremmo a vedere il testo
+// per risolvere questo problema, creiamo una funzione che ci restituisca un colore
+// appropriato per il testo
+@function set-text-color($color) {
+    // valutiamo la "lightness" del colore fornito in ingresso,
+    // e in base a questo impostiamo il colore.
+    @if(lightness($color) > 40%) {
+        // Abbiamo un colore in ingresso che è chiaro: restituiamo un colore scuro
+        @return black;
+    } @else {
+        @return white;
+    }
+}

@@ -1,0 +1,53 @@
+// Vogliamo che sia in alto a destra
+.menu-btn {
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    top: 1rem;
+    height: 20px;
+    width: 28px;
+    cursor: pointer;
+    @include transition-ease;
+
+    // Creiamo la barra centrale dell'hamburger; le altre 2 barre
+    // le creiamo come pseudo-elementi
+    &__burger {
+        position: absolute;
+        right: 0;
+        top: 0.5em;
+        width: 28px;
+        height: 3px;
+        background: set-text-color($primary-color);
+        @include transition-ease;
+
+        // Prima barra dell'hamburger
+        &::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 28px;
+            height: 3px;
+            background: set-text-color($primary-color);
+            @include transition-ease;
+        };
+
+        // Terza barra dell'hamburger (leggermente più corta)
+        &::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            width: 20px;
+            height: 3px;
+            background: set-text-color($primary-color);
+            @include transition-ease;
+        };
+
+        // Via JS assegneremo all'hamburger la classe "open"
+        // e dopo 2 giri di ruota (dell'intero hamburger), 
+        // la sola riga centrale diventerà trasparente.
+        &.open {
+            transform: rotate(720deg);
+            background: transparent;
+        };
+    }
+}
