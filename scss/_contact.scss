@@ -1,0 +1,44 @@
+.contact {
+  height: 100%;
+  padding-top: 40vh;
+  
+  // Non vogliamo barre di scorrimento
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background: 
+      // L'immagine è troppo bianca, si potrebbe risolvere il problema in vari modi
+      // scegliamo di definire un gradiente lineare
+      // Il gradiente andrà verso destra; 
+      // Il colore di partenza il colore primario, con opacità 0.9 
+      // Il colore di destinazione è ancora il colore primario: potremmo mantenere opacità 0.9,
+      // tuttavia variamo l'opacità per portarla fino a 0.3
+      linear-gradient(
+          to right,
+          rgba($primary-color, 0.9),
+          rgba($primary-color, 0.3)
+      ),
+      // Senza le indicazioni di posizionamento, 
+      // l'immagine non è correttamente posizionata
+      url('../img/model-1.jpg') center top;
+  background-size: cover;
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .social-icons {
+    position: initial;
+    margin-top: 2rem;
+  }
+}
