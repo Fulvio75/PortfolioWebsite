@@ -38,6 +38,29 @@
         }
     }
 
+    .jobs {
+        width: 60vw;
+        margin: 2rem auto 0 auto;
+        display: grid;
+        // Una unità frazionaria per la colonna della griglia, almeno inizialmente
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+    
+        &__job {
+            background: lighten($primary-color, 10%);
+            padding: 0.5rem;
+            border-bottom: 5px solid $secondary-color; 
+    
+            h2, h3 {
+                margin: 0.5rem 0;
+            }
+            
+            h6 {
+                margin: 0.3rem 0;
+            }
+        }
+    }
+
     // Le icone social sono un po' troppo in mezzo ai piedi: le 
     // mostriamo in colonna
     .social-icons {
@@ -52,25 +75,3 @@
     }
 }
 
-.jobs {
-    width: 60vw;
-    margin: 2rem auto 0 auto;
-    display: grid;
-    // Una unità frazionaria per la colonna della griglia, almeno inizialmente
-    grid-template-columns: 1fr;
-    grid-gap: 2rem;
-
-    &__job {
-        background: lighten($primary-color, 10%);
-        padding: 0.5rem;
-        border-bottom: 5px solid $secondary-color; 
-
-        h2, h3 {
-            margin: 0.5rem 0;
-        }
-        
-        h6 {
-            margin: 0.3rem 0;
-        }
-    }
-}
