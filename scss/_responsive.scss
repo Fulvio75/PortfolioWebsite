@@ -1,0 +1,74 @@
+@include media-md {
+  // Abbiamo spazio sufficiente per espandere il menu in linea
+  // Nascondiamo pertanto l'hamburger...
+  .menu-btn {
+    visibility: hidden;
+  }
+
+  // ...ed espandiamo il menu
+  .nav {
+    visibility: visible;
+
+    .menu-nav {
+      // In difetto di altre indicazioni, la posizione è "fixed"
+      display: block;
+      transform: translateY(0);
+      height: 100%;
+      background: transparent;
+      text-align: right;
+
+      &__item {
+        display: inline;
+        padding: 1.5rem;
+      }
+  
+      &__link {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  // Sulla pagina ABOUT espandiamo la dimensione dei caratteri
+  .about__bio {
+    font-size: 1.5rem;
+  }
+
+  .projects {
+    &__bio-image {
+      // Ampliamo l'altezza dell'immagine con il soggetto
+      height: 40vh;
+    }
+    &__items {
+      // Passiamo da 1 a 2 colonne
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .text-secondary {
+      font-size: 3rem;
+    }
+  }
+
+  .contact__list {
+    // Passiamo da 1 a 2 colonne anche per i contatti
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include media-lg {
+  .projects {
+    &__items {
+      // Passiamo da 2 a 3 colonne
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .contact__list {
+    // Passiamo da 2 a 3 colonne anche per i contatti
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include media-xl {
+  .projects__bio-image {
+    height: 50vh;
+  }
+}
